@@ -1,0 +1,6 @@
+com\example\expensetracker\config\FirebaseInitializer.class
+com\example\expensetracker\ExpenseTrackerApplication.class
+com\example\expensetracker\Expense.class
+com\example\expensetracker\ExpenseRepository.class
+com\example\expensetracker\ExpenseService.class
+com\example\expensetracker\ExpenseController.class
