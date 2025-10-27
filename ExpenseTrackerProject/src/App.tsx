@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dashboard } from './components/Dashboard';
 import { AddExpense } from './components/AddExpense';
 import { ExpenseList } from './components/ExpenseList';
+import { LoginForm } from './components/LoginForm';
 
 type Page = 'dashboard' | 'add-expense' | 'expense-list';
 
@@ -14,7 +15,16 @@ export interface Expense {
 }
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentPage, setCurrentPage] = useState<Page>('dashboard');
+
+  // Check for existing authentication token on app load
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
   const [expenses, setExpenses] = useState<Expense[]>([
     {
       id: '1',
@@ -74,6 +84,21 @@ export default function App() {
     );
   };
 
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('authToken');
+    setCurrentPage('dashboard');
+  };
+
+  // Show login page if not authenticated
+  if (!isAuthenticated) {
+    return <LoginForm onLoginSuccess={handleLoginSuccess} />;
+  }
+
   return (
     <div className="min-h-screen bg-[#F5F5F5]">
       {/* Navigation Bar */}
@@ -86,7 +111,7 @@ export default function App() {
               </div>
               <span className="text-white">Expense Tracker</span>
             </div>
-            <div className="flex gap-6">
+            <div className="flex gap-6 items-center">
               <button
                 onClick={() => setCurrentPage('dashboard')}
                 className={`px-4 py-2 rounded-lg transition-colors ${
@@ -116,6 +141,12 @@ export default function App() {
                 }`}
               >
                 Expense List
+              </button>
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 rounded-lg transition-colors text-[#B0B0B0] hover:text-white hover:bg-red-600"
+              >
+                Logout
               </button>
             </div>
           </div>

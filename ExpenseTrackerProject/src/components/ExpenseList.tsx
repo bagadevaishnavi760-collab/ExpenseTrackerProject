@@ -27,6 +27,7 @@ import {
 } from './ui/dialog';
 import { Textarea } from './ui/textarea';
 import { Edit2, Trash2 } from 'lucide-react';
+import { ExportButton } from './ExportButton';
 import type { Expense } from '../App';
 
 interface ExpenseListProps {
@@ -80,7 +81,10 @@ export function ExpenseList({
     <>
       <Card className="shadow-lg border-[#B0B0B0]/20">
         <CardHeader className="border-b border-[#B0B0B0]/20">
-          <CardTitle className="text-black">All Expenses</CardTitle>
+          <div className="flex justify-between items-center">
+            <CardTitle className="text-black">All Expenses</CardTitle>
+            <ExportButton />
+          </div>
         </CardHeader>
         <CardContent className="pt-6">
           <div className="rounded-lg border border-[#B0B0B0]/20 overflow-hidden">

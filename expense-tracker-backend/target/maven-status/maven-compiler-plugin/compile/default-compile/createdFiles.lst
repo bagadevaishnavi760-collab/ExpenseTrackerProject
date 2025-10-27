@@ -1,6 +1,9 @@
+com\example\expensetracker\export\ExpenseExcelExporter.class
 com\example\expensetracker\config\FirebaseInitializer.class
 com\example\expensetracker\ExpenseTrackerApplication.class
+com\example\expensetracker\export\ExpensePdfExporter.class
 com\example\expensetracker\Expense.class
+com\example\expensetracker\AuthController.class
 com\example\expensetracker\ExpenseRepository.class
 com\example\expensetracker\ExpenseService.class
 com\example\expensetracker\ExpenseController.class
